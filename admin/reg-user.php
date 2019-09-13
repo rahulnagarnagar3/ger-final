@@ -75,7 +75,7 @@ if (strlen($_SESSION['adid']==0)) {
                 </tr>
               </thead>
                <?php
-$ret=mysqli_query($con,"select * from customers");
+$ret=mysqli_query($con,"select * from tbluser");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -84,13 +84,13 @@ while ($row=mysqli_fetch_array($ret)) {
                 <tr>
                   <td><?php echo $cnt;?></td>
               
-                 <td><?php  echo $row['Name'];?></td>
+                 <td><?php  echo $row['FullName'];?></td>
                   <td><?php  echo $row['MobileNo'];?></td>
                   <td><?php  echo $row['Email'];?></td>
                   <td><?php  echo $row['RegDate'];?></td>
                   
                 
-                  
+                  <td><a href="edit-userdetail.php?udid=<?php echo base64_encode($row['ID'].$rno);?>" title="Edit user details"><i class="la la-edit"> edit detail</i></a>
                 </tr>
                 <?php 
 $cnt=$cnt+1;

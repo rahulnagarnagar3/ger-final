@@ -10,7 +10,7 @@ if(isset($_POST['submit']))
   {
     $catname=$_POST['catename'];
      
-    $query=mysqli_query($con, "insert into  category(VehicleCat) value('$catname')");
+    $query=mysqli_query($con, "insert into  tblcategory(VehicleCat) value('$catname')");
     if ($query) {
     $msg="Category has been added.";
   }

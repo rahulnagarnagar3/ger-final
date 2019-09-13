@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
  $serviceby=$_POST['serper'];
     
      
-   $query=mysqli_query($con, "update  services set AdminStatus='$admsta' where ID='$cid'");
+   $query=mysqli_query($con, "update  tblservicerequest set AdminStatus='$admsta' where ID='$cid'");
     if ($query) {
     $msg="Status has been updated";
   }
@@ -95,7 +95,7 @@ if(isset($_POST['submit']))
 
 <?php
 $cid=$_GET['aticid'];
-$ret=mysqli_query($con,"select * from services join customers on customers.customer_id=services.UserId where services.ID='$cid'");
+$ret=mysqli_query($con,"select * from tblservicerequest join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -193,12 +193,12 @@ if($row['AdminStatus']=="")
     <th>Admin Status :</th>
     <td>
    <select name="status" class="form-control wd-450" required="true" >
-     <option value="1" selected="true">Selected</option>
+     <option value="1" selected="true">Booked</option>
      <option value="2">Cancelled</option>
    </select></td>
   </tr>
     <tr align="center">
-    <td colspan="2"><button type="submit" name="submit" class="btn btn-az-primary pd-x-20">Service Completed</button></td>
+    <td colspan="2"><button type="submit" name="submit" class="btn btn-az-primary pd-x-20">Service Booked</button></td>
   </tr>
 </form>
   <?php } ?>

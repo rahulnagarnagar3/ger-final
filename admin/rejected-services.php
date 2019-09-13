@@ -78,7 +78,7 @@ if (strlen($_SESSION['adid']==0)) {
                 </tr>
               </thead>
                <?php
-$ret=mysqli_query($con,"select services.ServiceType ,services.Category,services.ServiceNumber,services.ID as apid, customers.Name,customers.MobileNo,customers.Email,customers.RegDate from  services inner join customers on customers.ID=services.UserId where services.AdminStatus='2'");
+$ret=mysqli_query($con,"select tblservicerequest.ServiceType ,tblservicerequest.ServiceNumber,tblservicerequest.Category,tblservicerequest.ID as apid, tbluser.FullName,tbluser.MobileNo,tbluser.Email,tbluser.RegDate from  tblservicerequest inner join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.AdminStatus ='2'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

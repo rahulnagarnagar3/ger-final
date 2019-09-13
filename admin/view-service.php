@@ -11,14 +11,14 @@ if(isset($_POST['submit']))
     
     $cid=$_GET['aticid'];
       $admrmk=$_POST['AdminRemark'];
-      $admsta=$_POST['AdminStatus'];
-      $servicecharge=$_POST['ServiceCharge'];
- $addcharge=$_POST['OtherCharge'];
- $partcharge=$_POST['PartsChange'];
- $serviceby=$_POST['ServiceBy'];
+      $admsta=$_POST['status'];
+      $sercharge=$_POST['servicecharge'];
+ $addcharge=$_POST['addcharge'];
+ $partcharge=$_POST['partcharge'];
+ $serviceby=$_POST['serper'];
     
      
-   $query=mysqli_query($con, "update  services set AdminRemark='$admrmk',AdminStatus='$admsta', ServiceCharge='$sercharge',OtherCharge='$addcharge', PartsChange='$partcharge', ServiceBy='$serviceby' where ID='$cid'");
+   $query=mysqli_query($con, "update  tblservicerequest set AdminRemark='$admrmk',AdminStatus='$admsta', ServiceCharge='$sercharge',OtherCharge='$addcharge', PartsCharge='$partcharge', ServiceBy='$serviceby' where ID='$cid'");
     if ($query) {
     $msg="Service has been completed.";
   }
@@ -93,9 +93,10 @@ if(isset($_POST['submit']))
   }  ?> </p>
 
 
+
 <?php
 $cid=$_GET['aticid'];
-$ret=mysqli_query($con,"select * from services join customers on customers.customer_id=services.UserId where services.ID='$cid'");
+$ret=mysqli_query($con,"select * from tblservicerequest join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -200,7 +201,7 @@ if($row['AdminStatus']=="3")
     <td>
     <select name='serper' id="serper" class="form-control">
      <option value="">Service By</option>
-      <?php $query=mysqli_query($con,"select * from mechanics");
+      <?php $query=mysqli_query($con,"select * from tblmechanics");
               while($row=mysqli_fetch_array($query))
               {
               ?>    
@@ -229,12 +230,12 @@ if($row['AdminStatus']=="3")
     <th>Admin Status :</th>
     <td>
    <select name="status" class="form-control wd-450" required="true" >
-     <option value="3" selected="true">Completed</option>
+     <option value="3" selected="true">Booked</option>
    </select></td>
   </tr>
 
   <tr align="center">
-    <td colspan="2"><button type="submit" name="submit" class="btn btn-az-primary pd-x-20">Service Completed</button></td>
+    <td colspan="2"><button type="submit" name="submit" class="btn btn-az-primary pd-x-20">Service Booked</button></td>
   </tr>
   </form>
 <?php } else { ?>

@@ -12,12 +12,11 @@ if(isset($_POST['submit']))
   {
    
     $pid=$_SESSION['sid'];
-    $FName=$_POST['Name'];
-    $mobno=$_POST['MobileNo'];
-    $email=$_POST['Email'];
-    $date=$_POST['RegDate'];
+    $FName=$_POST['fullname'];
+    $mobno=$_POST['mobilenumber'];
+    $email=$_POST['email'];
    
-     $query=mysqli_query($con, "update customers set Name='$FName',  MobileNo='$mobno',  Email='$email' RegDate='$date' where ID='$pid'");
+     $query=mysqli_query($con, "update tbluser set FullName='$FName',  MobileNo='$mobno',  Email='$email' where ID='$pid'");
     if ($query) {
     $msg="Your profile has been updated.";
   }
@@ -88,7 +87,7 @@ if(isset($_POST['submit']))
                                                 <form class="form-horizontal" role="form" method="post" >
                                                     <?php
 $userid=$_SESSION['sid'];
-$ret=mysqli_query($con,"select * from customers where ID='$userid'");
+$ret=mysqli_query($con,"select * from tbluser where ID='$userid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

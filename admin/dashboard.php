@@ -4,7 +4,7 @@ error_reporting(0);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['adid']==0)) {
   header('location:logout.php');
-  } 
+  } else {
 
 
 
@@ -91,7 +91,7 @@ if (strlen($_SESSION['adid']==0)) {
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from customers");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tbluser");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -135,7 +135,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from enquiry");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblenquiry");
 $enqcount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -179,7 +179,7 @@ $enqcount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from mechanics");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblmechanics");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -223,7 +223,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from services");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblservicerequest");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -267,7 +267,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from services where AdminStatus is null");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblservicerequest where AdminStatus is null");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -312,7 +312,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from services where AdminStatus='2'");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblservicerequest where AdminStatus='2'");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -356,7 +356,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from services where AdminStatus='3'");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblservicerequest where AdminStatus='3'");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -400,7 +400,7 @@ $usercount=mysqli_num_rows($query);
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from services where AdminStatus='4'");
+                        <div class="huge">  <?php $query=mysqli_query($con,"Select * from tblservicerequest  where AdminStatus='4'");
 $usercount=mysqli_num_rows($query);
 ?> </div>
                            
@@ -463,7 +463,7 @@ $usercount=mysqli_num_rows($query);
               </thead>
                <?php
                $sernumber = mt_rand(100000000, 999999999);
-$ret=mysqli_query($con,"select services.ServiceType ,services.Category,services.ServiceNumber,services.ID as apid, customers.Name,customers.MobileNo,customers.Email,customers.RegDate from  services inner join customers on customers.ID=services.UserId where services.AdminStatus is null");
+$ret=mysqli_query($con,"select tblservicerequest.ServiceType ,tblservicerequest.Category,tblservicerequest.ServiceNumber,tblservicerequest.ID as apid, tbluser.FullName,tbluser.MobileNo,tbluser.Email from  tblservicerequest inner join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.AdminStatus is null");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -533,9 +533,7 @@ $cnt=$cnt+1;
 <?php include_once('includes/footer.php');?>
             <!-- ============================================================== -->
             <!-- End Right content here -->
-            <!-- ============================================================== -->
-</div>
-
+        
         
         <!-- END wrapper -->
 
@@ -573,3 +571,4 @@ $cnt=$cnt+1;
 
     </body>
 </html>
+<?php } ?>

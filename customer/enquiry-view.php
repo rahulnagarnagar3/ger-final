@@ -74,7 +74,7 @@ if (strlen($_SESSION['sid']==0)) {
   }  ?> </p>
          <?php
 $antcid=$_GET['ticid'];
-$ret=mysqli_query($con,"select * from  enquiry where ID='$antcid'");
+$ret=mysqli_query($con,"select * from  tblenquiry where ID='$antcid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

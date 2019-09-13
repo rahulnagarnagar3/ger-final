@@ -72,7 +72,8 @@ if (strlen($_SESSION['adid']==0)) {
                 </tr>
               </thead>
                <?php
-$ret=mysqli_query($con,"select * from category");
+         $rno=mt_rand(10000,99999); 
+$ret=mysqli_query($con,"select * from tblcategory");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -83,7 +84,7 @@ while ($row=mysqli_fetch_array($ret)) {
               
                   <td><?php  echo $row['VehicleCat'];?></td>
                 
-                  <td><a href="edit-category.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-pencil"></i>Edit Category</a>
+                  <td><a href="edit-mechanicdetail.php?mecid=<?php echo base64_encode($row['ID'].$rno);?>">Edit Details</a>
                 </tr>
                 <?php 
 $cnt=$cnt+1;

@@ -5,12 +5,12 @@ include('includes/dbconnection.php');
 
 if(isset($_POST['Login']))
   {
-    $adminuser=$_POST['admin_email'];
-    $password=$_POST['admin_pass'];
-    $query=mysqli_query($con,"select admin_id from admin where  admin_email='$adminuser' && admin_pass='$password' ");
+    $email=$_POST['email'];
+    $password=md5($_POST['password']);
+    $query=mysqli_query($con,"select ID from tbladmin where  Email='$email' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
-      $_SESSION['adid']=$ret['admin_id'];
+      $_SESSION['adid']=$ret['ID'];
      header('location:dashboard.php');
     }
     else{
@@ -57,12 +57,16 @@ if(isset($_POST['Login']))
       
       <img src="assets/images/boss-512.png" class="avatar" alt="logo">
       <h1><a href="../index.php">Admin Login Here</a></h1>
+      
+                   <p style="font-size:16px; color:red" align="center"> <?php if($msg){
+    echo $msg;
+  }  ?> </p>
       <form action="#" method="post">
           
-          <p>Email</p>
-          <input type="text" name="admin_email" placeholder="Enter Email">
+          <p>User Name</p>
+          <input type="text" id="email" name="email" placeholder="Enter Email">
           <p>Password</p>
-          <input type="password" name="admin_pass" placeholder="Enter Password">
+          <input type="password" id="password"name="password" placeholder="Enter Password">
           
           <input type="submit" value="Login" name="Login">
           

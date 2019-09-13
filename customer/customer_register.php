@@ -5,20 +5,20 @@ error_reporting(0);
 include('includes/db.php');
 if(isset($_POST['submit']))
   {
-    $fname=$_POST['Name'];
-    $mobno=$_POST['MobileNo'];
-    $email=$_POST['Email'];
-    $password=md5($_POST['Pass']);
+    $fname=$_POST['fullname'];
+    $mobno=$_POST['mobilenumber'];
+    $email=$_POST['email'];
+    $password=md5($_POST['password']);
 
-    $ret=mysqli_query($con, "select Email from customers where Email='$email' || MobileNo='$mobno'");
+    $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNo='$mobno'");
     $result=mysqli_fetch_array($ret);
     if($result>0){
 $msg="This email or Contact Number already associated with another account";
     }
     else{
-    $query=mysqli_query($con, "insert into customers(Name, MobileNo, Email,  Pass) value('$fname', '$mobno', '$email', '$password' )");
+    $query=mysqli_query($con, "insert into tbluser(FullName, MobileNo, Email,  Password) value('$fname', '$mobno', '$email', '$password' )");
     if ($query) {
-    $msg="You have successfully registered. Please login to book a service";
+    $msg="You have successfully registered";
   }
   else
     {
@@ -36,7 +36,7 @@ $msg="This email or Contact Number already associated with another account";
 
     <head>
         <meta charset="utf-8" />
-        <title>Ger garage Service Management System</title>
+        <title>Ger Garage Service Management System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
@@ -74,7 +74,7 @@ return true;
     <body class="account-pages">
 
         <!-- Begin page -->
-        <div class="accountbg" style="background: url('images/bg2.jpg');background-size: auto;background-position: center top;"></div>
+        <div class="accountbg" style="background: url('images/bg2.jpg');background-position: center; height: 750px;"></div>
 
         <div class="wrapper-page account-page-full">
 
@@ -98,14 +98,14 @@ return true;
                                 <div class="form-group row m-b-20">
                                     <div class="col-12">
                                         <label for="username">Full Name</label>
-                                        <input class="form-control" type="text" id="fullname"name="Name" required="" placeholder="Enter Your Full Name">
+                                        <input class="form-control" type="text" id="fullname"name="fullname" required="" placeholder="Enter Your Full Name">
                                     </div>
                                 </div>
 
                                  <div class="form-group row m-b-20">
                                     <div class="col-12">
                                         <label for="username">Mobile Number</label>
-                                        <input class="form-control" type="text" id="mobilenumber" name="MobileNo" required="" placeholder="Enter Your Mobile Number" maxlength="10" pattern="[0-9]+">
+                                        <input class="form-control" type="text" id="mobilenumber" name="mobilenumber" required="" placeholder="Enter Your Mobile Number" maxlength="10" pattern="[0-9]+">
                                     </div>
                                 </div>
                                 
@@ -120,7 +120,7 @@ return true;
                                 <div class="form-group row m-b-20">
                                     <div class="col-12">
                                         <label for="password">Password</label>
-                                        <input class="form-control" type="password" required="" id="password" name="pass" placeholder="Enter your password">
+                                        <input class="form-control" type="password" required="" id="password" name="password" placeholder="Enter your password">
                                     </div>
                                 </div>
                                  <div class="form-group row m-b-20">
@@ -158,7 +158,7 @@ return true;
                             </div>
 
                             <div class="m-t-40 text-center">
-                <p class="account-copyright">2019 © Ger Garage Service Managment System</p>
+                <p class="account-copyright">2019 © Ger Garage  Service Managment System</p>
             </div>
                         </div>
                     </div>

@@ -8,10 +8,10 @@ error_reporting(0);
 
 if(isset($_POST['submit']))
 {
- 
-    $email=$_SESSION['admin_email'];
+ $mobno=$_SESSION['mobilenumber'];
+    $email=$_SESSION['email'];
 $newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"update admin set admin_pass ='$newpassword' where  admin_email='$email' ");
+$query=mysqli_query($con,"update tbladmin set Password ='$newpassword' where  Email='$email' && MobileNo = $mobno ");
 $row=mysqli_fetch_array($query);
 if($query)
    {
@@ -133,7 +133,7 @@ return true;
             </div>
 
             <div class="m-t-40 text-center">
-                <p class="account-copyright">2019 © Vehicle Service Managment System</p>
+                <p class="account-copyright">2019 © Ger Garage Service Managment System</p>
             </div>
 
         </div>

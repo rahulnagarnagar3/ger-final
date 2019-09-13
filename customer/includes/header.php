@@ -12,9 +12,9 @@
 
                             <?php
 $uid=$_SESSION['sid'];
-$ret=mysqli_query($con,"select Name from customers where ID='$uid'");
+$ret=mysqli_query($con,"select FullName from tbluser where ID='$uid'");
 $row=mysqli_fetch_array($ret);
-$name=$row['customer_name'];
+$name=$row['FullName'];
 
 ?>
 

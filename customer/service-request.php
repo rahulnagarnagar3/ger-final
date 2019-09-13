@@ -9,26 +9,22 @@ if (strlen($_SESSION['sid']==0)) {
 if(isset($_POST['submit']))
   {
     $uid=$_SESSION['sid'];
-    $type=$_POST['ServiceType'];
-     $category=$_POST['Category'];
-     $vehname=$_POST['VehicleName'];
-     $vehmodel=$_POST['VehicleModel'];
-     $vehbrand=$_POST['VehicleBrand'];
-     $vehrego=$_POST['VehicleRegno'];
-     $vehservicedate=$_POST['ServiceDate'];
-     
-     $vehservicetime=$_POST['ServiceTime'];
-     $deltype=$_POST['DeliveryType'];
-     $pickupadd=$_POST['PickupAddress'];
-     $desc=$_POST['Description'];
+     $type=$_POST['type'];
+     $category=$_POST['category'];
+     $vehname=$_POST['vehiclename'];
+     $vehmodel=$_POST['vehilemodel'];
+     $vehbrand=$_POST['vehiclebrand'];
+     $vehrego=$_POST['vehicleregno'];
+     $vehservicedate=$_POST['servicedate'];
+     $vehservicetime=$_POST['servicetime'];
+     $deltype=$_POST['deltype'];
+     $pickupadd=$_POST['pickupadd'];
+     $description=$_POST['description'];
      $sernumber = mt_rand(100000000, 999999999);
      
-     $query=mysqli_query($con,"insert into services (UserId,ServiceType,Category,ServiceNumber,VehicleName,VehicleModel,VehicleBrand,VehicleRegno,ServiceDate,ServiceTime,DeliveryType,PickupAddress,Description) value('$uid','$type','$category','$sernumber','$vehname','$vehmodel','$vehbrand','$vehrego','$vehservicedate','$vehservicetime','$deltype','$pickupadd','$desc')");
+     $query=mysqli_query($con,"insert into tblservicerequest(UserId,ServiceType,Category,ServiceNumber,VehicleName,VehicleModel,VehicleBrand,VehicleRegno,ServiceDate,ServiceTime,DeliveryType,PickupAddress) value('$uid','$type','$category','$sernumber','$vehname','$vehmodel','$vehbrand','$vehrego','$vehservicedate','$vehservicetime','$deltype','$pickupadd','$description')");
     if ($query) {
-    
-       if (strlen($_SESSION['Userid']==0)) {
-             $msg="Service  has been booked successfully.View your booking history";
-  }
+    $msg="Data has been added successfully.";
   }
   else
     {
@@ -38,6 +34,7 @@ if(isset($_POST['submit']))
   
 }
 }
+
 
 
 
@@ -138,7 +135,7 @@ $('#pickupaddress').show();
                                                         <div class="col-10">
                                                             <select name='type' id="type" class="form-control" required="true">
      <option value="" disabled selected>Select Service Type</option>
-      <?php $query=mysqli_query($con,"select * from service_type");
+      <?php $query=mysqli_query($con,"select * from tblservicetype");
                                                                 
               while($row=mysqli_fetch_array($query))
               {
@@ -160,7 +157,7 @@ $('#pickupaddress').show();
                                                         <div class="col-10">
                                                             <select name='category' id="category" class="form-control" required="true">
      <option value="">Category</option>
-      <?php $query=mysqli_query($con,"select * from category");
+      <?php $query=mysqli_query($con,"select * from tblcategory");
               while($row=mysqli_fetch_array($query))
               {
               ?>    
@@ -172,7 +169,7 @@ $('#pickupaddress').show();
                                                     <div class="form-group row">
 						<label class="col-2 col-form-label"><i class="fa fa-opencart"></i> Vehicle Make</label>
                                                         <div class="col-10">
-						<select  class="form-control" id="vehbrand" name="vehbrand" required="true">
+						<select  class="form-control" id="vehiclebrand" name="vehiclebrand" required="true">
 							<option value="">Car Make</option>
 							<option value="alfa romeo">Alfa Romeo</option>
 							<option value="asia">Asia</option>
@@ -251,7 +248,7 @@ $('#pickupaddress').show();
                                                         <label class="col-2 col-form-label"><i class="fa fa-pencil"></i> Vehicle Model Year</label>
                                                         <div class="col-10">
                                                            
-						<select name="vehmodel" id="vehmodel"  class="form-control">
+						<select name="vehilemodel" id="vehilemodel"  class="form-control">
 							<option value="">Vehicle year</option>
 							<option value="2019">2019</option>
 							<option value="2018">2018</option>
@@ -349,13 +346,13 @@ $('#pickupaddress').show();
                                                     <div class="form-group row">
                                                         <label class="col-2 col-form-label"><i class="fa fa-bolt"></i> Vehicle Engine Type</label>
                                                         <div class="col-10">
-                                                            <select name='vehicletype' id="vehicleype" class="form-control" required="true">
+                                                            <select name='vehicletype' id="vehicletype" class="form-control" required="true">
      <option value="">Engine Type</option>
-      <?php $query=mysqli_query($con,"select * from vehicle_type");
+      <?php $query=mysqli_query($con,"select * from tblenginetype");
               while($row=mysqli_fetch_array($query))
               {
               ?>    
-              <option value="<?php echo $row['vehicletype'];?>"><?php echo $row['vehicletype'];?></option>
+              <option value="<?php echo $row['enginetype'];?>"><?php echo $row['enginetype'];?></option>
                   <?php } ?>  
    </select>
                                                         </div>
@@ -372,9 +369,9 @@ $('#pickupaddress').show();
                                                         
                                                         <div class="col-10">
                                                            
-                                                            <input data-format="yyyy-MM-dd" style="width:200px" autocomplete="off" type="text" class="form-control" name="date" id="date" placeholder="yyyy-mm-dd" />
+                                                            <input data-format="yyyy-MM-dd" style="width:200px" autocomplete="off" type="text" class="form-control" name="servicedate" id="servicedate" placeholder="yyyy-mm-dd" />
                                                             <script>
-                                                            $('#date').datepicker({
+                                                            $('#servicedate').datepicker({
                                                             minDate:0,  
                                                             todayHighlight:true,
                                                             autoclose:true,
@@ -420,7 +417,7 @@ $('#pickupaddress').show();
                                                     <div class="form-group row">
                                                         <label class="col-2 col-form-label" ><i class="fa fa-comment"></i> Description of Problem</label>
                                                         <div class="col-10">
-						                              <textarea class="form-control" id="demsg" name="demsg" rows="3"></textarea>
+						                              <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                                                     </div>
                                                     </div>
 

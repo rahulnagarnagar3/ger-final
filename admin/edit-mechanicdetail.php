@@ -13,7 +13,7 @@ if(isset($_POST['submit']))
      $address=$_POST['macadd'];
     $mid=$_GET['mecid'];
      
-    $query=mysqli_query($con, "update  mechanics set FullName='$macname', MobileNumber='$mobno',Email= '$email', Address='$address' where ID=$mid"  );
+    $query=mysqli_query($con, "update  tblmechanics set FullName='$macname', MobileNumber='$mobno',Email= '$email', Address='$address' where ID=$mid"  );
     if ($query) {
     $msg="Mechanics detail has been update.";
   }
@@ -82,11 +82,12 @@ if(isset($_POST['submit']))
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="p-20">
-   <?php
- $mid=$_GET['mecid'];
-$ret=mysqli_query($con,"select * from mechanics where ID='$mid'");
+     <?php
+$mid=substr(base64_decode($_GET['mecid']),0,-5);
+$ret=mysqli_query($con,"select * from tblmechanics where ID='$mid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
+
 
 ?>
 <p style="font-size:16px; color:red" align="center"> <?php if($msg){
@@ -137,6 +138,9 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     
                                                         <div class="col-12">
                                                             <p style="text-align: center;"> <button type="submit" name="submit" class="btn btn-info btn-min-width mr-1 mb-1">Update</button></p>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <p style="text-align: center;"> <button type="cancel" name="cancel" class="btn btn-danger " onClick="document.location.href='dashboard.php';">Cancel</button></p>
                                                         </div>
                                                     </div>
 

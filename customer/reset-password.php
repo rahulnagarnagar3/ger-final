@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
  $mobno=$_SESSION['mobilenumber'];
     $email=$_SESSION['email'];
 $newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"update customers set current_password ='$newpassword' where  customer_email='$email' && customer_contact = $mobno ");
+$query=mysqli_query($con,"update tbluser set Password ='$newpassword' where  Email='$email' && MobileNo = $mobno ");
 $row=mysqli_fetch_array($query);
 if($query)
    {

@@ -5,14 +5,14 @@ include('includes/dbconnection.php');
 
 if(isset($_POST['submit']))
   {
-    
-    $email=$_POST['admin_email'];
+    $mobno=$_POST['mobilenumber'];
+    $email=$_POST['email'];
 
-        $query=mysqli_query($con,"select admin_id from admin where  admin_email='$email'");
+        $query=mysqli_query($con,"select ID from tbladmin where  Email='$email' and  MobileNumber ='$mobno' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
-      
-      $_SESSION['admin_email']=$email;
+      $_SESSION['mobilenumber']=$mobno;
+      $_SESSION['email']=$email;
      header('location:reset-password.php');
     }
     else{
@@ -20,7 +20,6 @@ if(isset($_POST['submit']))
     }
   }
   ?>
-
 
 
 

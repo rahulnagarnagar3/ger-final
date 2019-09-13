@@ -73,8 +73,9 @@ if (strlen($_SESSION['sid']==0)) {
                 </tr>
               </thead>
               <?php
-              $enid=$_SESSION['sid'];
-$ret=mysqli_query($con,"select * from  enquiry where UserId=$enid");
+         $enid=$_SESSION['sid'];
+            $rno=mt_rand(10000,99999);
+$ret=mysqli_query($con,"select * from  tblenquiry where UserId=$enid");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

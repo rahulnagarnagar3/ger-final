@@ -7,15 +7,13 @@ if (strlen($_SESSION['adid']==0)) {
   } else{
 if(isset($_POST['submit']))
   {
-    $sid=$_GET['ID'];
-    $fname=$_POST['Name'];
-    $phone=$_POST['MobileNo'];
-    $email=$_POST['Email'];
-    $date=$_POST['RegDate'];
+    $sid=$_GET['udid'];
+    $fname=$_POST['fullname'];
+    
     
    
 
-    $query=mysqli_query($con, "update customers set Name='$fname' ,MobileNo='$phone',Email='$email', RegDate='$date' where ID='$sid'");
+    $query=mysqli_query($con, "update tbluser set FullName='$fname' where ID='$sid'");
 
 
     if ($query) {
@@ -92,8 +90,8 @@ if(isset($_POST['submit']))
                                                <form class="form-horizontal" role="form" method="post" name="submit">
 
                                                 <?php
-$sid=$_GET['udid'];
-$ret=mysqli_query($con,"select * from customers where ID='$sid'");
+$sid=substr(base64_decode($_GET['udid']),0,-5);
+$ret=mysqli_query($con,"select * from tbluser where ID='$sid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -140,6 +138,10 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     
                                                         <div class="col-12">
                                                            <p style="text-align: center;">  <button type="submit" name="submit" class="btn btn-info btn-min-width mr-1 mb-1">Update</button></p>
+                                                        </div>
+                                                        
+                                                        <div class="col-12">
+                                                            <p style="text-align: center;"> <button type="cancel" name="cancel" class="btn btn-danger " onClick="document.location.href='dashboard.php';">Cancel</button></p>
                                                         </div>
                                                     </div>
 

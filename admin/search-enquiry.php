@@ -100,7 +100,8 @@ $sdata=$_POST['searchdata'];
 
                <?php
             
-$ret=mysqli_query($con,"select enquiry.EnquiryNumber, enquiry.EnquiryType,enquiry.ID as etid, customers.Name,customers.MobileNo,customers.Email,customers.RegDate from  enquiry inner join customers on customers.ID=enquiry.UserId where customers.Name like '%$sdata%' || customers.MobileNo like '%$sdata%' || customers.Email like '%$sdata%'");
+$ret=mysqli_query($con,"select tblenquiry.EnquiryNumber, tblenquiry.EnquiryType,tblenquiry.ID as etid, tbluser.FullName,tbluser.MobileNo,tbluser.Email,tbluser.RegDate from  tblenquiry inner join tbluser on tbluser.ID=tblenquiry.UserId where tbluser.FullName like '%$sdata%' || tbluser.MobileNo like '%$sdata%' || tbluser.Email like '%$sdata%'");
+$num=mysqli_num_rows($ret);
 $num=mysqli_num_rows($ret);
 if($num>0){
 $cnt=1;

@@ -72,9 +72,10 @@ if (strlen($_SESSION['sid']==0)) {
         <p style="font-size:16px; color:red" align="left"> <?php if($msg){
     echo $msg;
   }  ?> </p>
-         <?php
-$cid=$_GET['ticid'];
-$ret=mysqli_query($con,"select * from services where ID='$cid'");
+        <?php
+$cid=substr(base64_decode($_GET['srid']),0,-4);
+$uid=$_SESSION['sid'];
+$ret=mysqli_query($con,"select * from tblservicerequest where ID='$cid' and UserId='$uid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

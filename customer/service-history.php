@@ -77,8 +77,9 @@ if (strlen($_SESSION['sid']==0)) {
                 </tr>
               </thead>
               <?php
-              $tid=$_SESSION['sid'];
-$ret=mysqli_query($con,"select * from  services where UserId=$tid");
+       $tid=$_SESSION['sid'];
+              $rno=mt_rand(1000,9999);
+$ret=mysqli_query($con,"select * from  tblservicerequest where UserId=$tid");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

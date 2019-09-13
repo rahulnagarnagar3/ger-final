@@ -14,9 +14,9 @@
                             <img src="assets/images/user.png" alt="user-img" title="Mat Helme" class="rounded-circle img-fluid">
                         </div>
 
-                            <?php
+                           <?php
 $adid=$_SESSION['adid'];
-$ret=mysqli_query($con,"select admin_email from admin where admin_id='$adid'");
+$ret=mysqli_query($con,"select AdminName from tbladmin where ID='$adid'");
 $row=mysqli_fetch_array($ret);
 $name=$row['AdminName'];
 

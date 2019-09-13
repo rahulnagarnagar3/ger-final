@@ -12,9 +12,9 @@ if(isset($_POST['submit']))
   {
    
     $adminid=$_SESSION['adid'];
-     $email=$_POST['admin_email'];
+     $AName=$_POST['adminname'];
    
-     $query=mysqli_query($con, "update admin set admin_email='$email' where admin_id='$adminid'");
+     $query=mysqli_query($con, "update tbladmin set AdminName='$AName' where ID='$adminid'");
     if ($query) {
     $msg="Admin profile has been updated.";
   }
@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
                                                     <?php
   
 $adminid=$_SESSION['adid'];
-$ret=mysqli_query($con,"select * from admin where admin_id='$adminid'");
+$ret=mysqli_query($con,"select * from tbladmin where ID='$adminid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -94,7 +94,23 @@ while ($row=mysqli_fetch_array($ret)) {
 
 
                                                     
+                                                    
                                                     <div class="form-group row">
+                                                        <label class="col-2 col-form-label" for="example-email">Admin Name</label>
+                                                        <div class="col-10">
+                                                            <input type="text" id="adminname" name="adminname" class="form-control"  required="true" value="<?php  echo $row['AdminName'];?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-2 col-form-label">Mobile Number</label>
+                                                        <div class="col-10">
+                                                            <input type="text" class="form-control"  name="mobilenumber" id="mobilenumber" required="true" readonly="true" value="<?php  echo $row['MobileNumber'];?>">
+                                                        </div>
+                                                    </div>                                                     
+                                                       
+                                                       
+                                                       
+                                                       <div class="form-group row">
                                                         <label class="col-2 col-form-label">Email</label>
                                                         <div class="col-10">
                                                             <input type="email" class="form-control" name="admin_email" id="admin_email" required="true" readonly="true" value="<?php  echo $row['admin_email'];?>">
@@ -119,6 +135,10 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     
                                                         <div class="col-12">
                                                              <button type="submit" name="submit" class="btn btn-info btn-min-width mr-1 mb-1">Update</button>
+                                                        </div>
+                                                        
+                                                        <div class="col-12">
+                                                            <p style="text-align: center;"> <button type="cancel" name="cancel" class="btn btn-danger " onClick="document.location.href='dashboard.php';">Cancel</button></p>
                                                         </div>
                                                     </div>
 

@@ -80,7 +80,7 @@ if (strlen($_SESSION['adid']==0)) {
               </thead>
                <?php
                $sernumber = mt_rand(100000000, 999999999);
-$ret=mysqli_query($con,"select services.ServiceType ,services.Category,services.ServiceNumber,services.ID as apid, customers.Name,customers.MobileNo,customers.Email,customers.RegDate from  services inner join customers on customers.ID=services.UserId where services.AdminStatus is null");
+$ret=mysqli_query($con,"select tblservicerequest.ServiceType ,tblservicerequest.Category,tblservicerequest.ServiceNumber,tblservicerequest.ID as apid, tbluser.FullName,tbluser.MobileNo,tbluser.Email,tbluser.RegDate from  tblservicerequest inner join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.AdminStatus is null");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -90,7 +90,7 @@ while ($row=mysqli_fetch_array($ret)) {
                   <td><?php echo $cnt;?></td>
                       <td><?php  echo $row['ServiceNumber'];?></td>
                   <td><?php  echo $row['Category'];?></td>
-                  <td><?php  echo $row['ServiceNumber'];?></td>              
+                  <td><?php  echo $row['ServiceType'];?></td>              
                   <td><?php  echo $row['Name'];?></td>
                   <td><?php  echo $row['MobileNo'];?></td>
                   <td><?php  echo $row['Email'];?></td>

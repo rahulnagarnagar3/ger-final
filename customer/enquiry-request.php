@@ -13,7 +13,7 @@ if(isset($_POST['submit']))
      $description=$_POST['description'];
      $enqnumber = mt_rand(100000000, 999999999);
      
-     $query=mysqli_query($con,"insert into enquiry(UserId,EnquiryNumber,EnquiryType,Description) value('$uid','$enqnumber','$enquirytype','$description')");
+     $query=mysqli_query($con,"insert into tblenquiry(UserId,EnquiryNumber,EnquiryType,Description) value('$uid','$enqnumber','$enquirytype','$description')");
     if ($query) {
     $msg="Your enquiry has been sent successfully.";
   }
@@ -94,7 +94,7 @@ if(isset($_POST['submit']))
                                                         <div class="col-10">
                                                             <select name='enquirytype' id="enquirytype" class="form-control" required="true">
      <option value="">Enquiry Type</option>
-      <?php $query=mysqli_query($con,"select * from enquirytype");
+      <?php $query=mysqli_query($con,"select * from tblenquirytype");
               while($row=mysqli_fetch_array($query))
               {
               ?>    

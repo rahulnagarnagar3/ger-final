@@ -8,7 +8,7 @@ if(isset($_POST['Login']))
     $emailcon=$_POST['Email'];
     $password=md5($_POST['Pass']);
     $mobile=md5($_POST['MobileNo']);
-    $query=mysqli_query($con,"select ID from customers where  (Email='$emailcon' || MobileNo='$mobile') && Pass='$password' ");
+    $query=mysqli_query($con,"select ID from tbluser where  (Email='$emailcon' || MobileNo='$emailcon') && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['sid']=$ret['ID'];

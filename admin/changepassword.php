@@ -5,16 +5,16 @@ include('includes/dbconnection.php');
 error_reporting(0);
 if (strlen($_SESSION['adid']==0)) {
   header('location:logout.php');
-  } else{
+  } else {
 if(isset($_POST['submit']))
 {
 $adminid=$_SESSION['adid'];
 $cpassword=md5($_POST['currentpassword']);
 $newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select admin_id from admin where admin_id='$adminid' and   admin_pass='$cpassword'");
+$query=mysqli_query($con,"select ID from tbladmin where ID='$adminid' and   Password='$cpassword'");
 $row=mysqli_fetch_array($query);
 if($row>0){
-$ret=mysqli_query($con,"update admin set admin_pass='$newpassword' where admin_id='$adminid'");
+$ret=mysqli_query($con,"update tbladmin set Password='$newpassword' where ID='$adminid'");
 $msg= "Your password successully changed"; 
 } else {
 
@@ -98,7 +98,7 @@ return true;
                                                 <form class="form-horizontal" role="form" method="post" name="changepassword" onsubmit="return checkpass();">
                                                     <?php
 $adminid=$_SESSION['adid'];
-$ret=mysqli_query($con,"select * from admin where admin_id='$adminid'");
+$ret=mysqli_query($con,"select * from tbladmin where ID='$adminid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -137,6 +137,10 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     
                                                         <div class="col-12">
                                                              <button type="submit" name="submit" class="btn btn-info btn-min-width mr-1 mb-1">Change</button>
+                                                        </div>
+                                                        
+                                                        <div class="col-12">
+                                                            <p style="text-align: center;"> <button type="cancel" name="cancel" class="btn btn-danger " onClick="document.location.href='dashboard.php';">Cancel</button></p>
                                                         </div>
                                                     </div>
 

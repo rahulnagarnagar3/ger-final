@@ -7,10 +7,10 @@ if (strlen($_SESSION['adid']==0)) {
   } else{
 if(isset($_POST['submit']))
   {
-    $catname=$_POST['VehicleCat'];
+    $catname=$_POST['catename'];
     $eid=$_GET['editid'];
      
-    $query=mysqli_query($con, "update category set VehicleCat = '$catname' where ID=$eid"  );
+    $query=mysqli_query($con, "update tblcategory set VehicleCat = '$catname' where ID=$eid"  );
     if ($query) {
     $msg="Category has been update.";
   }
@@ -79,9 +79,9 @@ if(isset($_POST['submit']))
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="p-20">
-   <?php
- $cid=$_GET['editid'];
-$ret=mysqli_query($con,"select * from category where ID='$cid'");
+ <?php
+ $cid=substr(base64_decode($_GET['editid']),0,-5);
+$ret=mysqli_query($con,"select * from tblcategory where ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

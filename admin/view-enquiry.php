@@ -15,7 +15,7 @@ if(isset($_POST['submit']))
       
     
      
-   $query=mysqli_query($con, "update  enquiry set AdminResponse='$adresp',AdminStatus='$admsta' where ID='$cid'");
+   $query=mysqli_query($con, "update  tblenquiry set AdminResponse='$adresp',AdminStatus='$admsta' where ID='$cid'");
     if ($query) {
     $msg="Enquiry has been responded successfully.";
   }
@@ -92,7 +92,7 @@ if(isset($_POST['submit']))
 
 <?php
 $cid=$_GET['aticid'];
-$ret=mysqli_query($con,"select * from enquiry join customers on customers.customer_id=enquiry.UserId where enquiry.ID='$cid'");
+$ret=mysqli_query($con,"select * from tblenquiry join tbluser on tbluser.ID=tblenquiry.UserId where tblenquiry.ID='$cid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

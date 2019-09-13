@@ -5,9 +5,8 @@
 
                         <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
-                            
-<?php                                        
-$ret=mysqli_query($con,"select services.ServiceNumber,services.ID as apid, customers.customer_name,services.ServicerequestDate from  services inner join customers on customers.ID=services.UserId where services.AdminStatus is null");
+ <?php                                        
+$ret=mysqli_query($con,"select tblservicerequest.ServiceNumber,tblservicerequest.ID as apid, tbluser.FullName,tblservicerequest.ServicerequestDate from  tblservicerequest inner join tbluser on tbluser.ID=tblservicerequest.UserId where tblservicerequest.AdminStatus is null");
 $num=mysqli_num_rows($ret);?>
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
@@ -49,13 +48,11 @@ while ($row=mysqli_fetch_array($ret)) { ?>
                                 </div>
                             </li>
 
-                            
-
                             <?php
 $adid=$_SESSION['adid'];
-$ret=mysqli_query($con,"select admin_email from admin where admin_id='$adid'");
+$ret=mysqli_query($con,"select AdminName from tbladmin where ID='$adid'");
 $row=mysqli_fetch_array($ret);
-$name=$row['admin_email'];
+$name=$row['AdminName'];
 
 ?>
 

@@ -78,7 +78,7 @@ if (strlen($_SESSION['adid']==0)) {
               </thead>
                <?php
                $enqnumber = mt_rand(100000000, 999999999);
-$ret=mysqli_query($con,"select enquiry.EnquiryNumber, enquiry.EnquiryType,enquiry.ID as etid, customers.customer_name,customers.customer_contact,customers.customer_email,customers.customer_date from  enquiry inner join customers on customers.customer_id=enquiry.UserId where tblenquiry.AdminStatus =''");
+$ret=mysqli_query($con,"select tblenquiry.EnquiryNumber, tblenquiry.EnquiryType,tblenquiry.ID as etid, tbluser.FullName,tbluser.MobileNo,tbluser.Email,tbluser.RegDate from  tblenquiry inner join tbluser on tbluser.ID=tblenquiry.UserId where tblenquiry.AdminStatus =''");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 

@@ -11,10 +11,10 @@ if(isset($_POST['submit']))
 $userid=$_SESSION['sid'];
 $cpassword=md5($_POST['currentpassword']);
 $newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select ID from customers where ID='$userid' and   Pass='$cpassword'");
+$query=mysqli_query($con,"select ID from tbluser where ID='$userid' and   Password='$cpassword'");
 $row=mysqli_fetch_array($query);
 if($row>0){
-$ret=mysqli_query($con,"update customers set Pass='$newpassword' where ID='$userid'");
+$ret=mysqli_query($con,"update tbluser set Password='$newpassword' where ID='$userid'");
 $msg= "Your password successully changed"; 
 } else {
 
@@ -103,7 +103,7 @@ return true;
                                                 <form class="form-horizontal" role="form" method="post" name="changepassword" onsubmit="return checkpass();">
                                                     <?php
 $userid=$_SESSION['sid'];
-$ret=mysqli_query($con,"select * from customers where ID='$userid'");
+$ret=mysqli_query($con,"select * from tbluser where ID='$userid'");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -142,6 +142,10 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     
                                                         <div class="col-12">
                                                           <p style="text-align: center;">   <button type="submit" name="submit" class="btn btn-info btn-min-width mr-1 mb-1">Change</button></p>
+                                                        </div>
+                                                        
+                                                        <div class="col-12">
+                                                            <p style="text-align: center;"> <button type="cancel" name="cancel" class="btn btn-danger " onClick="document.location.href='dashboard.php';">Cancel</button></p>
                                                         </div>
                                                     </div>
 

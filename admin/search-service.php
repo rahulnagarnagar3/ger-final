@@ -99,7 +99,7 @@ $sdata=$_POST['searchdata'];
  
                <?php
                
-$ret=mysqli_query($con,"select services.Category,services.ServiceNumber,services.ID as apid, customers.Name,customers.MobileNo,customers.Email,customers.RegDate from  services inner join customers on customers.ID=services.UserId where customers.Name like '%$sdata%' || customers.MobileNo like '%$sdata%' || customers.Email like '%$sdata%'");
+$ret=mysqli_query($con,"select tblservicerequest.Category,tblservicerequest.ServiceNumber,tblservicerequest.ID as apid, tbluser.FullName,tbluser.MobileNo,tbluser.Email,tbluser.RegDate from  tblservicerequest inner join tbluser on tbluser.ID=tblservicerequest.UserId where tbluser.FullName like '%$sdata%' || tbluser.MobileNo like '%$sdata%' || tbluser.Email like '%$sdata%'");
 $num=mysqli_num_rows($ret);
 if($num>0){
 
