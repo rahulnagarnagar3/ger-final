@@ -1,5 +1,5 @@
 <?php
-$db=mysqli_connect("localhost","root","","ger_management_sys");
+$db=mysqli_connect("localhost","root","","ger");
 
 function getRealIpUser(){
     
